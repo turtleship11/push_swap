@@ -6,81 +6,69 @@
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 18:07:26 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/06/06 17:39:38 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:01:27 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	free_all(char **result, int j)
+
+int	word_count(char *s)
 {
-	while (j > 0)
-	{
-		free(result[--j]);
-	}
-	free(result);
-}
+	int i = 0;
+	int word = 0;
+	int count = 0;
 
-static int	word_count(const char *s, char c)
-{
-	int	count;
-	int	word;
-
-	count = 0;
-	word = 0;
-	while (*s)
-	{
-		if (*s != c && word == 0)
-		{
-			word = 1;
-			count++;
-		}
-		else if (*s == c)
-		{
-			word = 0;
-		}
-		s++;
-	}
-	return (count);
-}
-
-static int	make_split(char **result, const char *s, char c)
-{
-	int	i;
-	int	j;
-	int	start;
-
-	i = 0;
-	j = 0;
 	while (s[i])
 	{
-		if (s[i] != c)
+		if ((s[i] != ' ' && s[i] != '\t') && word == 0)
 		{
-			start = i;
-			while (s[i] && s[i] != c)
-				i++;
-			result[j] = ft_substr(s, start, i - start);
-			if (!result[j])
-				return (free_all(result, j), 0);
-			j++;
+			count++;
+			word = 1;
 		}
-		else
-			i++;
+		else if (s[i] == ' ' || s[i] == '\t')
+			word = 0;
+		i++;
 	}
-	result[j] = NULL;
-	return (1);
+	return count;
 }
 
-char	**ft_split(char const *s, char c)
+char *ft_store(int start, int end, char *s)
 {
-	char	**result;
+	char *temp;
+	int i = 0;
 
-	if (!s)
-		return (NULL);
-	result = malloc(sizeof(char *) * (word_count(s, c) + 1));
-	if (!result)
-		return (NULL);
-	if (!make_split(result, s, c))
-		return (NULL);
-	return (result);
+	temp = malloc(end - start + 1);
+	if (!temp)
+		return NULL;
+	while (start < end)
+		temp[i++] = s[start++];
+	temp[i] = '\0';
+	return temp;
 }
+
+char **ft_split(char *str)
+{
+	char **temp;
+	int i = 0, t = 0, start;
+	int count = word_count(str);
+
+	temp = malloc(sizeof(char *) * (count + 1));
+	if (!temp)
+		return NULL;
+
+	while (str[i])
+	{
+		while (str[i] == ' ' || str[i] == '\t')
+			i++;
+		if (str[i] == '\0')
+			break;
+		start = i;
+		while (str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
+			i++;
+		temp[t++] = ft_store(start, i, str);
+	}
+	temp[t] = NULL;
+	return temp;
+}
+

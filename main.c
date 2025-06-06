@@ -6,7 +6,7 @@
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:17:05 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/06/06 14:16:49 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:01:55 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ int main (int ac, char **av)
 		}
 	int word_count = count_word(av[1]);
 	ft_printf("word_c : %i\n", word_count);	
-	int *a;
 	char **temp;
-	temp = ft_split(av[1], ' ');
+	temp = ft_split(av[1]);
 	if (!temp)
 		return 0;
 	int ctoi;
@@ -84,10 +83,8 @@ int main (int ac, char **av)
 	}
 	
 	t_stack stack_a;
-	t_stack stack_b;
 	stack_a.arr = malloc(sizeof(int) * word_count);
-	stack_b.arr = malloc(sizeof(int) * word_count);
-	stack_b.size = 0;
+
 	if (!stack_a.arr)
 		return 0;
 	stack_a.size = word_count;

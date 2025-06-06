@@ -6,7 +6,7 @@
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:18:19 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/06/06 14:22:14 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:02:55 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_stack{
 } t_stack;
 
 int	ft_atoi(const char *str);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char *str);
+int	is_sorted(t_stack *a);
 
 #endif

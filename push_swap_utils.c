@@ -6,7 +6,7 @@
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:25:35 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/06/06 17:56:09 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/06/06 19:04:12 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void ss(t_stack *a, t_stack *b)
 		return;
 	if(b->size < 2)
 		return;
-	int temp1 = a-> arr[0];
+	temp1 = a-> arr[0];
 	a-> arr[0] = a-> arr[1];
 	a-> arr[1] = temp1;
-	int temp2 = b->arr[0];
+	temp2 = b->arr[0];
 	b->arr[0] = b->arr[1];
 	b->arr[1] = temp2;
 	ft_printf("ss\n");
@@ -179,7 +179,7 @@ void rrb(t_stack *b)
 		}
 		b->arr[0] = temp;
 	}
-	ft_printf("rra\n");
+	ft_printf("rrb\n");
 }
 void rrr(t_stack *a,t_stack *b)
 {
