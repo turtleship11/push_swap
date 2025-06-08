@@ -26,5 +26,7 @@ typedef struct s_stack{
 int	ft_atoi(const char *str);
 char	**ft_split(char *str);
 int	is_sorted(t_stack *a);
+void sort_three(t_stack *stack);
+void sort_five(t_stack *a, t_stack *b);
 
 #endif
