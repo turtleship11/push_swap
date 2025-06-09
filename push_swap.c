@@ -6,7 +6,7 @@
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:10:30 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/06/06 18:45:52 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/06/09 13:58:58 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,24 @@ void sort_three_a(t_stack *stack)
 void sort_three_b(t_stack *b)
 {
     int a = b->arr[0];
-    int b = b->arr[1];
+    int b_ = b->arr[1];
     int c = b->arr[2];
 
-    if (a < b && b > c && a > c)
+    if (a < b_ && b_ > c && a > c)
         sb(b);
-    else if (a < b && b < c)
+    else if (a < b_ && b_ < c)
     {
         sb(b);
         rrb(b);
     }
-    else if (a < b && b > c && a < c)
+    else if (a < b_ && b_ > c && a < c)
         rb(b);
-    else if (a > b && b < c && a < c)
+    else if (a > b_ && b_ < c && a < c)
     {
         sb(b);
         rb(b);
     }
-    else if (a > b && b < c && a > c)
+    else if (a > b_ && b_ < c && a > c)
         rrb(b);
 }
 
@@ -113,7 +113,7 @@ void sort_five(t_stack *a, t_stack *b)
         }
         pb(a,b);
     }
-    sort_three(a);
+    sort_three_a(a);
     while(b->size > 0)
         pa(a,b);
 }
