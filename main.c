@@ -33,27 +33,27 @@ int count_word(char *s)
 	return (count);
 	
 }
+
 int check_n(int *num, int size)
 {
-	int i;
-	int	j;
-	i = 0;
-	while (i < size  -1)
+	int i = 0;
+	while (i < size - 1)
 	{
-		j = 0;
-		while(j < size)
+		int j = i + 1;
+		while (j < size)
 		{
-			if (i != j && num[i] == num[j])
+			if (num[i] == num[j])
 				return 0;
-		j++;
+			j++;
 		}
-	i++;
+		i++;
 	}
-	return (1);
+	return 1;
 }
+
 int main (int ac, char **av)
 {
-	if (ac != 2)
+	if (ac == 1)
 		{
 			ft_printf("error\n");
 			return 0;
@@ -82,21 +82,33 @@ int main (int ac, char **av)
 		return 0;		
 	}
 	
-	t_stack stack_a;
-	stack_a.arr = malloc(sizeof(int) * word_count);
-
-	if (!stack_a.arr)
+	t_stack a;
+	t_stack b;
+	a.arr = malloc(sizeof(int) * word_count);
+	b.arr = malloc(sizeof(int) * word_count);
+	a.size = word_count;
+	b.size = 0;
+	if (!a.arr)
 		return 0;
-	stack_a.size = word_count;
-	
+	if (!b.arr)
+		return 0;	
 	i = 0;
 	while (i < word_count)
-
 	{
-		stack_a.arr[i] = n_array[i];
-		ft_printf("stack_a[%d] = %d\n", i, stack_a.arr[i]);
+		a.arr[i] = n_array[i];
+		ft_printf("stack_a[%d] = %d\n", i, a.arr[i]);
 		i++;
 	}
 	free(n_array);
+	if (is_sorted(&a))
+		return(free(a.arr), free(b.arr),0);
+	if (word_count <= 3)
+		sort_three(&a);
+	else if (word_count <= 5)
+		sort_five(&a,&b);
+	else
+		sort_a_quick(&a, &b, word_count);
+	free(a.arr);
+	free(b.arr);
 	return 0;
 }

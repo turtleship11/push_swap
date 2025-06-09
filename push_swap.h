@@ -28,5 +28,6 @@ char	**ft_split(char *str);
 int	is_sorted(t_stack *a);
 void sort_three(t_stack *stack);
 void sort_five(t_stack *a, t_stack *b);
+void sort_a_quick(t_stack *a, t_stack *b, int size);
 
 #endif

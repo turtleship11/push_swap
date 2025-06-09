@@ -27,7 +27,7 @@ int is_sorted(t_stack *a)
 	return (1);
 }
 
-void sort_three(t_stack *stack)
+void sort_three_a(t_stack *stack)
 {
     int a;
     int b;
@@ -53,6 +53,31 @@ void sort_three(t_stack *stack)
     else if (a > b && b < c && a > c )
         ra(stack);
 }
+
+void sort_three_b(t_stack *b)
+{
+    int a = b->arr[0];
+    int b = b->arr[1];
+    int c = b->arr[2];
+
+    if (a < b && b > c && a > c)
+        sb(b);
+    else if (a < b && b < c)
+    {
+        sb(b);
+        rrb(b);
+    }
+    else if (a < b && b > c && a < c)
+        rb(b);
+    else if (a > b && b < c && a < c)
+    {
+        sb(b);
+        rb(b);
+    }
+    else if (a > b && b < c && a > c)
+        rrb(b);
+}
+
 
 int min_num(t_stack *stack)
 {
