@@ -118,10 +118,11 @@ int *CtoI(char **temp, int word_count)
 	n_array = malloc(sizeof(int) * word_count);
 	int i;
 	i = 0;
+	int error;
     while (temp[i] != NULL)
     {
-        long val = ft_atoi(temp[i]);
-		if (val == -1 || val > INT_MAX || val < INT_MIN)
+        long val = ft_atoi(temp[i], &error);
+		if (error || val > INT_MAX || val < INT_MIN)
         {
             write(2, "Error\n", 6);
             free_split(temp);
@@ -185,11 +186,14 @@ void stack_check(t_stack *a,t_stack *b,int word_count)
 	else if (word_count <= 5)
 		sort_five(a,b);
 	else
-		sort_a_quick(a,b,word_count);
+	{
+		sort_first(a, b, word_count);
+		// sort_a_quick(a,b,word_count);
+	}
 	int i = 0;
 	while(i < a->size)
 	{
-		ft_printf("arr[%d] = %i\n",i, a->arr[i]);
+		// ft_printf("arr[%d] = %i\n",i, a->arr[i]);
 		i++;
 	}
 	// ft_printf("a->size %i\n", a->size);

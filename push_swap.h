@@ -24,7 +24,7 @@ typedef struct s_stack{
 } t_stack;
 
 int	av_len(char **av);
-long	ft_atoi(const char *str);
+long	ft_atoi(const char *str,int *error);
 char **ft_split(char *str);
 int	is_sorted(t_stack *a);
 void sort_three_a(t_stack *stack);
@@ -62,4 +62,7 @@ int find_low_pivot(t_stack *stack, int size);
 int find_upper_pivot(t_stack *stack, int size);
 int find_pivot(t_stack *stack, int size);
 
+void sort_three_a_limited(t_stack *a);
+void sort_three_b_limited(t_stack *b);
+void sort_first(t_stack *a, t_stack *b, int size);
 #endif

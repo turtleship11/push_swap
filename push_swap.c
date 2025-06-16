@@ -155,3 +155,87 @@ void sort_five(t_stack *a, t_stack *b)
         pa(a,b);
 }
 
+void sort_first_three_al(t_stack *stack)
+{
+    if (stack->size < 3)
+    {
+        if (stack->size == 2 && stack->arr[0] > stack->arr[1])
+            sa(stack);
+        return;
+    }
+
+    int a = stack->arr[0];
+    int b = stack->arr[1];
+    int c = stack->arr[2];
+
+    if (a > b && b < c && c > a)
+        sa(stack);
+    else if (a < b && b > c && a > c)
+    {
+        rra(stack);
+        sa(stack);
+        ra(stack);
+        ra(stack);
+    }
+    else if (a > b && b > c && a > c)
+    {
+        sa(stack);
+        rra(stack);
+        sa(stack);
+        ra(stack);
+        ra(stack);
+    }
+    else if (a < b && b > c && a < c)
+    {
+        sa(stack);
+        ra(stack);
+        sa(stack);
+        rra(stack);
+    }
+    else if (a > b && b < c && a > c)
+        ra(stack);
+}
+void sort_first_three_bl(t_stack *stack)
+{
+    if (stack->size < 3)
+    {
+        if (stack->size == 2 && stack->arr[0] < stack->arr[1])
+            sb(stack);
+        return;
+    }
+
+    int a = stack->arr[0];
+    int b = stack->arr[1];
+    int c = stack->arr[2];
+
+    if (a < b && b > c && a > c)
+        sb(stack);
+    else if (a < b && b < c)
+    {
+        sb(stack);
+        rb(stack);
+        sb(stack);
+        rrb(stack);
+    }
+    else if (a > b && b < c && a < c)
+    {
+        rb(stack);
+        sb(stack);
+        rrb(stack);
+    }
+    else if (a > b && b < c && a > c)
+    {
+        sb(stack);
+        rb(stack);
+        sb(stack);
+        rrb(stack);
+    }
+    else if (a < b && b > c && a < c)
+    {
+        rb(stack);
+        sb(stack);
+        rrb(stack);
+        sb(stack);
+    }
+    // else: already sorted (a > b > c)
+}

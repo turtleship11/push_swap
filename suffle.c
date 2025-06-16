@@ -16,15 +16,15 @@ void shuffle_array(int *arr, int size)
 
 int main()
 {
-    int arr[100];
-    for (int i = 0; i < 100; i++)
+    int arr[500];
+    for (int i = 0; i < 500; i++)
         arr[i] = i ;
 
     srand(time(NULL));  // 시드 초기화
 
-    shuffle_array(arr, 100);
+    shuffle_array(arr, 500);
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 500; i++)
         printf("%d ", arr[i]);
     printf("\n");
 
