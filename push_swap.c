@@ -6,7 +6,7 @@
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:10:30 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/06/09 13:58:58 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/06/06 18:45:52 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,34 @@ int is_sorted(t_stack *a)
 	}
 	return (1);
 }
+int is_sorted_size(t_stack *stack, int size)
+{
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (stack->arr[i] > stack->arr[i + 1])
+            return 0;
+    }
+    return 1;
+}
+int is_sorted_desc(t_stack *b, int size)
+{
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (b->arr[i] < b->arr[i + 1])
+            return 0;
+    }
+    return 1;
+}
+
 
 void sort_three_a(t_stack *stack)
 {
+    if (stack->size < 3)
+    {
+        if (stack->size == 2 && stack->arr[0] > stack->arr[1])
+            sa(stack);
+        return;
+    }
     int a;
     int b;
     int c;
@@ -59,25 +84,25 @@ void sort_three_b(t_stack *b)
     int a = b->arr[0];
     int b_ = b->arr[1];
     int c = b->arr[2];
-
-    if (a < b_ && b_ > c && a > c)
-        sb(b);
-    else if (a < b_ && b_ < c)
-    {
-        sb(b);
-        rrb(b);
-    }
-    else if (a < b_ && b_ > c && a < c)
-        rb(b);
-    else if (a > b_ && b_ < c && a < c)
+    if (a > b_ && b_ > c) // already sorted
+        return;
+    else if (a > c && c > b_) // a > c > b_
     {
         sb(b);
         rb(b);
     }
-    else if (a > b_ && b_ < c && a > c)
+    else if (b_ > a && a > c) // b_ > a > c
+        sb(b);
+    else if (b_ > c && c > a) // b_ > c > a
+        rb(b);
+    else if (c > a && a > b_) // c > a > b_
         rrb(b);
+    else if (c > b_ && b_ > a) // c > b_ > a
+    {
+        sb(b);
+        rrb(b);
+    }
 }
-
 
 int min_num(t_stack *stack)
 {
@@ -105,11 +130,23 @@ void sort_five(t_stack *a, t_stack *b)
     {
         int min_i;
         min_i = min_num(a);
-        i = 0;
-        while (i < min_i)
+        if (min_i <= a->size / 2)
         {
-            ra(a);
-            i++;
+            i = 0;
+            while (i < min_i)
+            {
+                ra(a);
+                i++;
+            }
+        }
+        else
+        {
+            i = 0;
+            while (i < a->size - min_i)
+            {
+                rra(a);
+                i++;
+            }
         }
         pb(a,b);
     }
@@ -117,3 +154,4 @@ void sort_five(t_stack *a, t_stack *b)
     while(b->size > 0)
         pa(a,b);
 }
+

@@ -19,7 +19,7 @@ void sa(t_stack *a)
 	int temp = a-> arr[0];
 	a-> arr[0] = a-> arr[1];
 	a-> arr[1] = temp;
-	ft_printf("sa\n");
+    write(1, "sa\n", 3);
 }
 void sb(t_stack *b)
 {
@@ -28,24 +28,25 @@ void sb(t_stack *b)
 	int temp = b->arr[0];
 	b->arr[0] = b->arr[1];
 	b->arr[1] = temp;
-	ft_printf("sb\n");		
+    write(1, "sb\n", 3);
 }
 void ss(t_stack *a, t_stack *b)
 {
-	int temp1;
-	int temp2;
-	if(a->size < 2)
-		return;
-	if(b->size < 2)
-		return;
-	temp1 = a-> arr[0];
-	a-> arr[0] = a-> arr[1];
-	a-> arr[1] = temp1;
-	temp2 = b->arr[0];
-	b->arr[0] = b->arr[1];
-	b->arr[1] = temp2;
-	ft_printf("ss\n");
+    if (a->size >= 2)
+    {
+        int temp1 = a->arr[0];
+        a->arr[0] = a->arr[1];
+        a->arr[1] = temp1;
+    }
+    if (b->size >= 2)
+    {
+        int temp2 = b->arr[0];
+        b->arr[0] = b->arr[1];
+        b->arr[1] = temp2;
+    }
+    write(1, "ss\n", 3);
 }
+
 void pa(t_stack *a, t_stack *b)
 {
 	if (b-> size == 0)
@@ -68,7 +69,7 @@ void pa(t_stack *a, t_stack *b)
 	a->arr[0] = temp;
 	a->size++;
 	b->size--;
-	ft_printf("pa\n");
+    write(1, "pa\n", 3);
 }
 void pb(t_stack *a, t_stack *b)
 {
@@ -92,37 +93,44 @@ void pb(t_stack *a, t_stack *b)
 	b->arr[0] = temp;
 	b->size++;
 	a->size--;
-	ft_printf("pb\n");
+    write(1, "pb\n", 3);
 }
 
 void ra(t_stack *a)
 {
-	int temp;
-	temp = a->arr[0];
+    if (a->size < 2)
+        return;
+
+    int temp = a->arr[0];
 	int i;
 	i = 0;
-	while (i < a->size -1)
+	while(i < a->size - 1)
 	{
-		a->arr[i] = a->arr[i+1];
+		a->arr[i] = a->arr[i +1];
 		i++;
 	}
-	a->arr[a->size-1] = temp;
-	ft_printf("ra\n");
+	a->arr[a->size -1] = temp;
+    write(1, "ra\n", 3);
 }
+
 void rb(t_stack *b)
 {
-	int temp;
-	temp = b->arr[0];
-	int i;
-	i = 0;
-	while (i < b->size -1)
-	{
-		b->arr[i] = b->arr[i+1];
-		i++;
-	}
-	b->arr[b->size-1] = temp;
-	ft_printf("rb\n");
+    if (b->size < 2)  // 2개 이상일 때만 회전 가능
+        return;
+
+    int temp = b->arr[0];
+    int i = 0;
+
+    while (i < b->size - 1)  // size - 1 까지 이동
+    {
+        b->arr[i] = b->arr[i + 1];
+        i++;
+    }
+    b->arr[b->size - 1] = temp;  // 마지막 자리에 첫 번째 값 저장
+    write(1, "rb\n", 3);
 }
+
+
 void rr(t_stack *a,t_stack *b)
 {
 	int temp;
@@ -145,42 +153,33 @@ void rr(t_stack *a,t_stack *b)
 		j++;
 	}
 	b->arr[b->size-1] = temp1;	
-	ft_printf("rr\n");	
+    write(1, "rr\n", 3);
 }
 void rra(t_stack *a)
 {
-	if (a->size > 1)
-	{
-		int temp;
-		int i;
-		temp = a->arr[a->size-1];
-		i = a->size -1;
-		while(i > 0)
-		{
-			a->arr[i] = a->arr[i -1];
-			i--;
-		}
-		a->arr[0] = temp;
-	}
-	ft_printf("rra\n");
+    if (a->size < 2)
+        return;
+
+    int temp = a->arr[a->size - 1];
+    for (int i = a->size - 1; i > 0; i--)
+        a->arr[i] = a->arr[i - 1];
+    a->arr[0] = temp;
+    write(1, "rra\n", 4);
 }
+
 void rrb(t_stack *b)
 {
-	if (b->size > 1)
-	{
-		int temp;
-		int i;
-		temp = b->arr[b->size-1];
-		i = b->size -1;
-		while(i > 0)
-		{
-			b->arr[i] = b->arr[i -1];
-			i--;
-		}
-		b->arr[0] = temp;
-	}
-	ft_printf("rrb\n");
+    if (b->size < 2)
+        return;
+
+    int temp = b->arr[b->size - 1];
+    for (int i = b->size - 1; i > 0; i--)
+        b->arr[i] = b->arr[i - 1];
+    b->arr[0] = temp;
+    write(1, "rrb\n", 4);
 }
+
+
 void rrr(t_stack *a,t_stack *b)
 {
 	if (a->size > 1)
@@ -210,5 +209,15 @@ void rrr(t_stack *a,t_stack *b)
 		}
 		b->arr[0] = temp1;
 	}
-	ft_printf("rrr\n");
+    write(1, "rrr\n", 4);
 }
+// void rb_partial(t_stack *b, int size)
+// {
+//     if (size < 2)
+//         return;
+//     int temp = b->arr[0];
+//     for (int i = 0; i < size - 1; i++)
+//         b->arr[i] = b->arr[i + 1];
+//     b->arr[size - 1] = temp;
+// 	write(1, "rb\n", 3);
+// }
