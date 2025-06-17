@@ -10,7 +10,7 @@ SRCS = main.c ft_atoi.c ft_split.c push_swap.c push_swap_utils.c \
        ft_printf/ft_printf.c ft_printf/ft_printf_utils.c \
        ft_printf/ft_printf_hex.c ft_printf/ft_printf_ptr.c \
        ft_printf/ft_printf_nbr.c ft_printf/ft_printf_un.c \
-	   quick_sort.c main_help.c quick.c
+	   quick_sort.c main_help.c quick.c pivot.c
 
 # 오브젝트 파일 자동 생성
 OBJS = $(SRCS:.c=.o)

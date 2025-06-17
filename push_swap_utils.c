@@ -211,13 +211,3 @@ void rrr(t_stack *a,t_stack *b)
 	}
     write(1, "rrr\n", 4);
 }
-// void rb_partial(t_stack *b, int size)
-// {
-//     if (size < 2)
-//         return;
-//     int temp = b->arr[0];
-//     for (int i = 0; i < size - 1; i++)
-//         b->arr[i] = b->arr[i + 1];
-//     b->arr[size - 1] = temp;
-// 	write(1, "rb\n", 3);
-// }
