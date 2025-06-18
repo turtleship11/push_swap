@@ -9,7 +9,8 @@
 /*   Updated: 2025/04/23 16:36:26 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <limits.h>
+
+#include "push_swap.h"
 
 long	ft_atoi(const char *str,int *error)
 {
@@ -31,7 +32,6 @@ long	ft_atoi(const char *str,int *error)
 	{
 		if (v > (LONG_MAX - (*str - '0')) / 10)
 		{
-			// 오버플로우 시 -1 리턴 (에러 표시)
 			*error = 1;
 			return 0;
 		}

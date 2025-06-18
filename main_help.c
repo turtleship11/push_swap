@@ -38,3 +38,29 @@ int check_n(int *num, int size)
 	}
 	return 1;
 }
+
+int	av_len(char **av)
+{
+	int	i;
+	int j;
+	int len;
+	len = 0;
+	i = 1;
+	while (av[i] != NULL)
+	{
+		j = 0;
+		while(av[i][j] != '\0')
+		{
+			j++;
+		}
+		len = len + j;
+		i++;
+	}
+	return (len);
+}
+
+void reverse_rotate_multiple(t_stack *stack, void (*rr_func)(t_stack *), int times)
+{
+    while (times-- > 0)
+        rr_func(stack);
+}

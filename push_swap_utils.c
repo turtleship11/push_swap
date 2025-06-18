@@ -71,6 +71,7 @@ void pa(t_stack *a, t_stack *b)
 	b->size--;
     write(1, "pa\n", 3);
 }
+
 void pb(t_stack *a, t_stack *b)
 {
 	if (a-> size == 0)
@@ -115,21 +116,20 @@ void ra(t_stack *a)
 
 void rb(t_stack *b)
 {
-    if (b->size < 2)  // 2개 이상일 때만 회전 가능
+    if (b->size < 2) 
         return;
 
     int temp = b->arr[0];
     int i = 0;
 
-    while (i < b->size - 1)  // size - 1 까지 이동
+    while (i < b->size - 1)
     {
         b->arr[i] = b->arr[i + 1];
         i++;
     }
-    b->arr[b->size - 1] = temp;  // 마지막 자리에 첫 번째 값 저장
+    b->arr[b->size - 1] = temp;
     write(1, "rb\n", 3);
 }
-
 
 void rr(t_stack *a,t_stack *b)
 {
@@ -195,7 +195,6 @@ void rrr(t_stack *a,t_stack *b)
 		}
 		a->arr[0] = temp;
 	}
-	
 	if (b->size > 1)
 	{
 		int temp1;

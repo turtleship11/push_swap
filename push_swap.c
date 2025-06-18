@@ -26,6 +26,7 @@ int is_sorted(t_stack *a)
 	}
 	return (1);
 }
+
 int is_sorted_size(t_stack *stack, int size)
 {
     for (int i = 0; i < size - 1; i++)
@@ -35,6 +36,7 @@ int is_sorted_size(t_stack *stack, int size)
     }
     return 1;
 }
+
 int is_sorted_desc(t_stack *b, int size)
 {
     for (int i = 0; i < size - 1; i++)
@@ -163,7 +165,6 @@ void sort_first_three_al(t_stack *stack)
             sa(stack);
         return;
     }
-
     int a = stack->arr[0];
     int b = stack->arr[1];
     int c = stack->arr[2];
@@ -195,6 +196,7 @@ void sort_first_three_al(t_stack *stack)
     else if (a > b && b < c && a > c)
         ra(stack);
 }
+
 void sort_first_three_bl(t_stack *stack)
 {
     if (stack->size < 3)
@@ -237,5 +239,4 @@ void sort_first_three_bl(t_stack *stack)
         rrb(stack);
         sb(stack);
     }
-    // else: already sorted (a > b > c)
 }

@@ -21,7 +21,7 @@ int valid_input(char **av)
 		return (0);
 	while (av[i] != NULL)
 	{
-		if (av[i][0] == '\0')  // 빈 문자열이면 에러
+		if (av[i][0] == '\0')
             return 0;
 		j = 0;
 		while(av[i][j] != '\0')
@@ -31,7 +31,6 @@ int valid_input(char **av)
 				j++;
             else if (av[i][j] == '-')
             {
-                // '-' 뒤에는 반드시 숫자가 와야 함을 체크
                 if ((j == 0 || av[i][j - 1] == ' ' || av[i][j - 1] == '\t')
                     && (av[i][j + 1] >= '0' && av[i][j + 1] <= '9'))
                     j++;
@@ -45,25 +44,7 @@ int valid_input(char **av)
 	}
 	return (1);
 }
-int	av_len(char **av)
-{
-	int	i;
-	int j;
-	int len;
-	len = 0;
-	i = 1;
-	while (av[i] != NULL)
-	{
-		j = 0;
-		while(av[i][j] != '\0')
-		{
-			j++;
-		}
-		len = len + j;
-		i++;
-	}
-	return (len);
-}
+
 char	*words_join(char **av)
 {
 	int len;
@@ -102,16 +83,7 @@ char	*words_join(char **av)
 	temp[t] = '\0';
 	return (temp);
 }
-void free_split(char **split)
-{
-    int i = 0;
-    while (split[i])
-    {
-        free(split[i]);
-        i++;
-    }
-    free(split);
-}
+
 int *CtoI(char **temp, int word_count)
 {
 	int *n_array;
@@ -157,10 +129,10 @@ int init_sort(int *n_array, int word_count)
 	}
 	a.size = word_count;
 	b.size = 0;
-	if (!a.arr)
-		return 0;
-	if (!b.arr)
-		return 0;	
+	// if (!a.arr)
+	// 	return 0;
+	// if (!b.arr)
+	// 	return 0;	
 	int	i;
 	i = 0;
 	while (i < word_count)
@@ -172,6 +144,7 @@ int init_sort(int *n_array, int word_count)
 	stack_check(&a, &b, word_count);
 	return (1);
 }
+
 void stack_check(t_stack *a,t_stack *b,int word_count)
 {
 	if (is_sorted(a))
@@ -186,21 +159,17 @@ void stack_check(t_stack *a,t_stack *b,int word_count)
 	else if (word_count <= 5)
 		sort_five(a,b);
 	else
-	{
 		sort_first(a, b, word_count);
-		// sort_a_quick(a,b,word_count);
-	}
 	int i = 0;
 	while(i < a->size)
 	{
 		// ft_printf("arr[%d] = %i\n",i, a->arr[i]);
 		i++;
-	}
-	// ft_printf("a->size %i\n", a->size);
-	// ft_printf("b->size %i\n", b->size);	
+	}	
 	free(a->arr);
 	free(b->arr);
 }
+
 int main (int ac, char **av)
 {
 	if ((ac <= 1) || valid_input(av) == 0) 
