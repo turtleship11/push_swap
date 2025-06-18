@@ -72,5 +72,12 @@ int find_pivot(t_stack *stack, int size);
 
 void sort_a_norra(t_stack *a, t_stack *b, int size);
 void sort_b_norrb(t_stack *a, t_stack *b, int size);
-void sort_four_b_limited(t_stack *a, t_stack *b);
+void sort_four_a(t_stack *a, t_stack *b);
+int find_min_index(t_stack *a, int size);
+
+int find_max_index(t_stack *b, int size);
+void sort_four_b(t_stack *a, t_stack *b);
+void sort_five_a(t_stack *a, t_stack *b);
+int find_third_largest_pivot(t_stack *stack, int size);
+
 #endif
